@@ -13,6 +13,9 @@ const scissors_div = document.getElementById("s");
 
 //MAIN - user will click one of three icons, based on that a paramater is passed to 'game function' and it is called.
 function main() {
+    //before doing anything, we need to remember last-time score
+    remember();
+
     rock_div.addEventListener('click', () => {
         game("r");
     })
@@ -47,6 +50,9 @@ function game(userChoice){
             draw(userChoice, computerChoice);
             break;
     }
+
+
+
 }
 
 //getComputerChoice()- That was called above to get computerChoice
@@ -60,6 +66,7 @@ function getComputerChoice(){
 function win(userChoice, computerChoice){
     const userChoice_div = document.getElementById(userChoice);
     userScore++;
+    localStorage.setItem("userScore", userScore);
     userScore_span.innerHTML=userScore;
     computerScore_span.innerHTML=computerScore;
     result_p.innerHTML=`${convertToWord(userChoice)} beats ${convertToWord(computerChoice)}. You Win!😃`;
@@ -71,6 +78,7 @@ function win(userChoice, computerChoice){
 function lose(userChoice, computerChoice){
     const userChoice_div = document.getElementById(userChoice);
     computerScore++;
+    localStorage.setItem("computerScore", computerScore);
     userScore_span.innerHTML=userScore;
     computerScore_span.innerHTML=computerScore;
     result_p.innerHTML=`${convertToWord(userChoice)} beats ${convertToWord(computerChoice)}. You Lose!💩`;
@@ -95,6 +103,20 @@ function convertToWord(letter){
     return "Scissors";
 }
 
+// remember function
+function remember(){
+    if(!localStorage.getItem("userScore")) localStorage.setItem("userScore", "0");
+    if(!localStorage.getItem("computerScore")) localStorage.setItem("computerScore", "0");
 
-//Calling "Main function"
+    let userLastScore=parseInt(localStorage.getItem("userScore"));
+    let compLastScore=parseInt(localStorage.getItem("computerScore"));
+
+    userScore=userLastScore;
+    computerScore=compLastScore;
+    
+    document.getElementById("user-score").innerHTML=userScore;
+    document.getElementById("computer-score").innerHTML=computerScore;
+}
+
+//Calling "Main function" - the action begins
 main();
