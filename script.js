@@ -10,6 +10,7 @@ const result_p = document.querySelector(".result p");
 const rock_div = document.getElementById("r");
 const paper_div = document.getElementById("p");
 const scissors_div = document.getElementById("s");
+const button = document.getElementById("button");
 
 //MAIN - user will click one of three icons, based on that a paramater is passed to 'game function' and it is called.
 function main() {
@@ -117,6 +118,19 @@ function remember(){
     document.getElementById("user-score").innerHTML=userScore;
     document.getElementById("computer-score").innerHTML=computerScore;
 }
+
+//button
+function callButton(){
+    userScore = 0;
+    computerScore = 0;
+    localStorage.setItem("userScore", "0");
+    localStorage.setItem("computerScore", "0");
+    document.getElementById("user-score").innerHTML=userScore;
+    document.getElementById("computer-score").innerHTML=computerScore;
+}
+
+
+
 
 //Calling "Main function" - the action begins
 main();

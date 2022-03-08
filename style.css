@@ -8,14 +8,27 @@
 }
 
 body{
-    background-color: #262632;;
+    background-color: #262632;
 }
 
 header{
     background: white;
     padding: 10px;
 }
-
+button{
+    color: white;
+    background-color: #262632;
+    padding:10px;
+    border-radius: 12px;
+    position:absolute;
+    top:8px;
+    cursor: pointer;
+    display: flex;
+}
+#button:hover {
+    background-color: #e04e45;
+    transition: 0.7s;
+}
 header h1 {
     color: #24272e;
     text-align:center;
